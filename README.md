@@ -1,7 +1,7 @@
 mobForest <img src="man/figures/200px-Rti-logo.png" align="right" />
 ========================================================
 
-![travis-ci build status](https://travis-ci.org/kaseyriver11/mobForest.svg?branch=master) ![CRAN statusbadge](https://www.r-pkg.org/badges/version/mobForest)
+![travis-ci build status](https://travis-ci.org/RTIInternational/mobForest.svg?branch=master) ![CRAN statusbadge](https://www.r-pkg.org/badges/version/mobForest)
 
 ### mobForest R Package
 `mobForest` implements random forest method for model based recursive partitioning. The `mob()` function, developed by Zeileis et al (2008), within party package, is modified to construct model-based decision trees based on random forests methodology. The main input function `mobforest.analysis()` takes all input parameters to construct trees, compute out-of-bag errors, predictions, and overall accuracy of forest. The algorithm performs parallel computation using `clusterApply()` function within the parallel package.
