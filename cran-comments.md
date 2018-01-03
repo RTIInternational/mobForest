@@ -1,3 +1,10 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Updated the date in the DESCRIPTION file
+* Added all authors of the 'party' package to the "Authors@R" section in the DESCRIPTION file
+* Fixed the single quotes around package names in the DESCRIPTION file
+
 ## Test environments
 * local OS X install, R 3.4.3
 * ubuntu 12.04 (on travis-ci), R 3.4.3

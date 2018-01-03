@@ -2,12 +2,13 @@ Package: mobForest
 Type: Package
 Title: Model Based Random Forest Analysis
 Version: 1.3.0
-Date: 2015-09-14
-Author: Nikhil Garge [aut], Barry Eggleston [aut], Georgiy Bobashev [aut], Benjamin Carper [cre], Kasey Jones [ctb, cre] 
+Date: 2018-01-03
+Authors@R: c(person("Torsten", "Hothorn", email = "Torsten.Hothorn@R-project.org", role = "ctb"), person("Kurt", "Hornik", role = "ctb"), person("Carolin", "Strobl", role = "ctb"), person("Achim", "Zeileis", role = "ctb"))
+Author: Nikhil Garge [aut], Barry Eggleston [aut], Georgiy Bobashev [aut], Benjamin Carper [cre], Kasey Jones [ctb, cre]
 Maintainer: Kasey Jones <krjones@rti.org>
 Description: Functions to implements random forest method for model based
     recursive partitioning. The mob() function, developed by Zeileis et al. (2008),
-    within party package, is modified to construct model-based decision trees based
+    within 'party' package, is modified to construct model-based decision trees based
     on random forests methodology. The main input function mobforest.analysis() takes
     all input parameters to construct trees, compute out-of-bag errors, predictions,
     and overall accuracy of forest. The algorithm performs parallel computation
