@@ -65,7 +65,6 @@ bootstrap <- function(i, data, main_model, partition_vars, mtry, new_test_data,
   data_sub_inds <-
     sample(nrow(data), replace = replace)[1:round(fraction * nrow(data))]
   data_sub <- data[data_sub_inds, ]
-
   # Call mob_RF_tree based on model@name
   fmBH <- NULL
   if (model@name == "linear regression model") {
@@ -135,6 +134,7 @@ bootstrap <- function(i, data, main_model, partition_vars, mtry, new_test_data,
   # If model is a glm.
   if (model@name == "generalized linear regression model") {
     if (fmBH@tree$model$family$link == "logit") {
+      obs_outcome[, 1] <- as.factor(obs_outcome[,1])
       levels(obs_outcome[, 1]) <- list("0" = levels(obs_outcome[, 1])[1],
                                        "1" = levels(obs_outcome[, 1])[2])
       pred_class <- rep(0, length(pred))
