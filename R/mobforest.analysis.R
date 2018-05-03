@@ -116,6 +116,7 @@ mobforest.analysis <-
     cl <- makeCluster(getOption("cl.cores", processors))
     clusterEvalQ(cl, {
       library(party)
+      library(mobForest)
       })
     clusterSetRNGStream(cl, iseed = seed)
     clusterExport(cl, c("mob.rf.tree", "tree.predictions", "compute.r2",
