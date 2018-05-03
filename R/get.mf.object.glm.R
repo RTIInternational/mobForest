@@ -34,7 +34,6 @@ get.mf.object.glm <- function(object, main_model, partition_vars, data,
                                    new_test_data, ntree, fam,
                                    prob_cutoff = .5) {
   ### Remove Global Variable Warnings ###
-  sd = ""; 
   c_out <- object
   var_imp <- matrix(0, nrow = length(partition_vars), ncol = ntree)
   rownames(var_imp) <- partition_vars
