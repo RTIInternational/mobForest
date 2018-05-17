@@ -92,6 +92,6 @@ get.mf.object.lm <- function(object, main_model, partition_vars,
     mobforest.output(
       oob_pred, general_pred, new_data_pred, var_imp_obj,
       paste(main_model, paste(partition_vars, collapse = " + "), sep = " | "),
-      fam = "", train_response = obs_outcome, new_response = new_data_obs)
+      fam = "", train_response = obs_outcome, new_response = new_data_obs, fmBH)
   return(mfout)
 }
