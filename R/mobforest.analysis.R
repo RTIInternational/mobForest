@@ -99,7 +99,7 @@ mobforest.analysis <-
   function(formula, partition_vars, data,
            mobforest_controls = mobforest.control(),
            new_test_data = as.data.frame(matrix(0, 0, 0)), processors = 1,
-           model = linearModel, family = NULL, prob_cutoff = NULL,
+           model = linearModel, family = NULL, prob_cutoff = .5,
            seed = sample(1:10000000, 1)) {
     # From library(party)
     mod <- string.formula(formula)
