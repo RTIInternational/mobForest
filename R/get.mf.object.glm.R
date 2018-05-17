@@ -37,6 +37,7 @@ get.mf.object.glm <- function(object, main_model, partition_vars, data,
   c_out <- object
   var_imp <- matrix(0, nrow = length(partition_vars), ncol = ntree)
   rownames(var_imp) <- partition_vars
+  fmBH <- list()
   oob_acc <- c()
   general_acc <- c()
   gen_predictions <-
@@ -45,6 +46,7 @@ get.mf.object.glm <- function(object, main_model, partition_vars, data,
     matrix(NA, ncol = ntree, nrow = length(c_out[[1]]$pred))
 
   for (i in 1:ntree) {
+    fmBH[i] <- c_out[[i]]$fmBH
     oob_acc[i] <- c_out[[i]]$oob_acc
     general_acc[i] <- c_out[[i]]$gen_acc
     gen_predictions[, i] <- c_out[[i]]$pred
@@ -82,13 +84,14 @@ get.mf.object.glm <- function(object, main_model, partition_vars, data,
       ModelEnvFormula(
         as.formula(paste(main_model, paste(partition_vars, collapse = " + "),
                          sep = " | ")), data = new_data) @get ("response")
-    new_data_acc <- unlist(lapply(1:ntree, function(x) c_out[[x]]$newdat_acc))
+    new_data_acc <- unlist(lapply(1:ntree, function(x) c_out[[x]]$new_data_acc))
     new_data_res <- rep(NA, nrow(new_data_obs))
     new_data_pred <-
       prediction.output(
         pred_mean = apply(new_data_predictions, 1, mean, na.rm = T),
         pred_sd = apply(new_data_predictions, 1, sd, na.rm = T),
-        residual = new_data_res, R2 = new_data_acc,
+        residual = new_data_res,
+        R2 = new_data_acc,
         overall_r2 = compute.acc(new_data_obs, new_data_predictions,
                                prob_cutoff), pred_type = "Newdata")
   }
@@ -98,6 +101,6 @@ get.mf.object.glm <- function(object, main_model, partition_vars, data,
       oob_pred, general_pred, new_data_pred, var_imp_obj,
       paste(main_model, paste(partition_vars, collapse = " + "), sep = " | "),
       fam = fam, train_response = obs_outcome,
-      new_response = new_data_obs)
+      new_response = new_data_obs, fmBH)
   return(mfout)
 }
