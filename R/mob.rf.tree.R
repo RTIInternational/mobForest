@@ -36,7 +36,7 @@ mob.rf.tree <- function(main_model, partition_vars, mtry, weights,
                                             collapse = " + "), sep = " | "))
   if (inherits(base_fm, "formula")) {
     mobpp <- function(formula, data, model) {
-      ff <- attr(ParseFormula(formula), "formula")
+      ff <- attr(modeltools:::ParseFormula(formula), "formula")
       ff$input[[3]] <- ff$input[[2]]
       ff$input[[2]] <- ff$response[[2]]
       dpp(model, as.formula(ff$input),
@@ -81,14 +81,13 @@ mob.rf.tree <- function(main_model, partition_vars, mtry, weights,
       }
       mf <-
         formula(paste(main_model, paste(sample(partition_vars)[1:mtry],
-                                       collapse =  " + "), sep = " | "))
+                                        collapse =  " + "), sep = " | "))
       mf <- mobpp(mf, data, model)
       thisnode$left <- mob_fit(obj, mf, weights = childweights$left, control)
       thisnode$right <- mob_fit(obj, mf, weights = childweights$right, control)
     }
     return(thisnode)
   }
-
   nodeid <- 1
   tr <- mob_fit(fm, base_fm, weights = weights, control = control)
   y <- base_fm@get ("response")
