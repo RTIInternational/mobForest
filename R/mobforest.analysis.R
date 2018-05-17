@@ -125,7 +125,7 @@ mobforest.analysis <-
       clusterApply(cl, 1:B, bootstrap, data = data, main_model = mod,
                    partition_vars = partition_vars, mtry = mtry,
                    new_test_data = new_test_data,
-                   mobforest_control = mobforest_controls@mob_control,
+                   mobforest_controls = mobforest_controls@mob_control,
                    fraction = fraction, replace = mobforest_controls@replace,
                    model = model, family = family, prob_cutoff = prob_cutoff)
     stopCluster(cl)
