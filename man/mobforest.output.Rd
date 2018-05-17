@@ -6,7 +6,7 @@
 \usage{
 mobforest.output(oob_predictions, general_predictions, new_data_predictions,
   varimp_object, model_used, fam, train_response,
-  new_response = data.frame(matrix(0, 0, 0)))
+  new_response = data.frame(matrix(0, 0, 0)), fmBH)
 }
 \arguments{
 \item{oob_predictions}{Predictions on out-of-bag data.}
