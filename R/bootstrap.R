@@ -164,6 +164,7 @@ bootstrap <- function(i, data, main_model, partition_vars, mtry, new_test_data,
           ModelEnvFormula(
             as.formula(paste(main_model, partition_vars, sep = " | ")),
             data = new_test_data) @get ("response")
+        obs_newdat[, 1] <- as.factor(obs_newdat[, 1])
         levels(obs_newdat[, 1]) <- list("0" = levels(obs_newdat[, 1])[1],
                                         "1" = levels(obs_newdat[, 1])[2])
         new_data_acc <-
@@ -171,9 +172,10 @@ bootstrap <- function(i, data, main_model, partition_vars, mtry, new_test_data,
       }
       ret <- list(oob_inds, (oob_acc / length(oob_inds)), pred,
                   (oob_acc - oob_acc_perm) / length(oob_inds),
-                  (gen_acc / nrow(data)), pred_new, new_data_acc)
+                  (gen_acc / nrow(data)), pred_new, new_data_acc,
+                  fmBH)
       names(ret) <- c("oob_inds", "oob_acc", "pred", "raw_var_imp", "gen_acc",
-                      "pred_new", "new_data_acc")
+                      "pred_new", "new_data_acc", 'fmBH')
     }
   }
   return(ret)
