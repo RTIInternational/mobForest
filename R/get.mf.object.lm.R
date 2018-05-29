@@ -28,7 +28,6 @@ get.mf.object.lm <- function(object, main_model, partition_vars,
   c_out <- object
   var_imp <- matrix(0, nrow = length(partition_vars), ncol = ntree)
   rownames(var_imp) <- partition_vars
-  fmBH <- list()
   oob_R2 <- c()
   oob_mse <- c()
   general_R2 <- c()
@@ -39,7 +38,6 @@ get.mf.object.lm <- function(object, main_model, partition_vars,
     matrix(NA, ncol = ntree, nrow = length(c_out[[1]]$pred))
 
   for (i in 1:ntree) {
-    fmBH[i] <- c_out[[i]]$fmBH
     oob_R2[i] <- c_out[[i]]$oob_R2
     oob_mse[i] <- c_out[[i]]$mse_oob
     general_R2[i] <- c_out[[i]]$gen_R2
@@ -92,6 +90,6 @@ get.mf.object.lm <- function(object, main_model, partition_vars,
     mobforest.output(
       oob_pred, general_pred, new_data_pred, var_imp_obj,
       paste(main_model, paste(partition_vars, collapse = " + "), sep = " | "),
-      fam = "", train_response = obs_outcome, new_response = new_data_obs, fmBH)
+      fam = "", train_response = obs_outcome, new_response = new_data_obs)
   return(mfout)
 }

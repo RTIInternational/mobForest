@@ -37,7 +37,6 @@ get.mf.object.glm <- function(object, main_model, partition_vars, data,
   c_out <- object
   var_imp <- matrix(0, nrow = length(partition_vars), ncol = ntree)
   rownames(var_imp) <- partition_vars
-  fmBH <- list()
   oob_acc <- c()
   general_acc <- c()
   gen_predictions <-
@@ -46,7 +45,6 @@ get.mf.object.glm <- function(object, main_model, partition_vars, data,
     matrix(NA, ncol = ntree, nrow = length(c_out[[1]]$pred))
 
   for (i in 1:ntree) {
-    fmBH[i] <- c_out[[i]]$fmBH
     oob_acc[i] <- c_out[[i]]$oob_acc
     general_acc[i] <- c_out[[i]]$gen_acc
     gen_predictions[, i] <- c_out[[i]]$pred
@@ -101,6 +99,6 @@ get.mf.object.glm <- function(object, main_model, partition_vars, data,
       oob_pred, general_pred, new_data_pred, var_imp_obj,
       paste(main_model, paste(partition_vars, collapse = " + "), sep = " | "),
       fam = fam, train_response = obs_outcome,
-      new_response = new_data_obs, fmBH)
+      new_response = new_data_obs)
   return(mfout)
 }

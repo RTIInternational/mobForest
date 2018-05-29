@@ -7,7 +7,7 @@
 mobforest.analysis(formula, partition_vars, data,
   mobforest_controls = mobforest.control(),
   new_test_data = as.data.frame(matrix(0, 0, 0)), processors = 1,
-  model = linearModel, family = NULL, prob_cutoff = NULL,
+  model = linearModel, family = NULL, prob_cutoff = 0.5,
   seed = sample(1:1e+07, 1))
 }
 \arguments{

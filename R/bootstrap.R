@@ -172,10 +172,9 @@ bootstrap <- function(i, data, main_model, partition_vars, mtry, new_test_data,
       }
       ret <- list(oob_inds, (oob_acc / length(oob_inds)), pred,
                   (oob_acc - oob_acc_perm) / length(oob_inds),
-                  (gen_acc / nrow(data)), pred_new, new_data_acc,
-                  fmBH)
+                  (gen_acc / nrow(data)), pred_new, new_data_acc)
       names(ret) <- c("oob_inds", "oob_acc", "pred", "raw_var_imp", "gen_acc",
-                      "pred_new", "new_data_acc", 'fmBH')
+                      "pred_new", "new_data_acc")
     }
   }
   return(ret)

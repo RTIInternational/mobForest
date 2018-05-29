@@ -20,13 +20,13 @@
 mobforest.output <-
   function(oob_predictions, general_predictions, new_data_predictions,
            varimp_object, model_used, fam, train_response,
-           new_response = data.frame(matrix(0, 0, 0)), fmBH) {
+           new_response = data.frame(matrix(0, 0, 0))) {
     rval <- new("mobforest.output", oob_predictions = oob_predictions,
                 general_predictions = general_predictions,
                 new_data_predictions = new_data_predictions,
                 varimp_object = varimp_object, model_used = model_used,
                 fam = fam, train_response = train_response,
-                new_response = new_response, fmBH = fmBH)
+                new_response = new_response)
     return(rval)
   }
 

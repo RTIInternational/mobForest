@@ -111,5 +111,5 @@ setClass("mobforest.output",
                         model_used = "character",
                         fam = "character",
                         train_response = "data.frame",
-                        new_response = "data.frame",
-                        fmBH = "list"))
+                        new_response = "data.frame"
+                        ))
