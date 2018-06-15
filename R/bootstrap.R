@@ -8,14 +8,10 @@
 #' @param mtry A Random subset of partition variables to be considered at each
 #' @param new_test_data A data frame representing test data for validating
 #' random forest model. This data is not used in in tree building process.
-#' @param mobforest_controls An object of class
-#' \code{"\linkS4class{mobforest.control}"} returned by
-#' \link[=mobforest.control]{mobforest.control()}, that contains parameters
-#' controlling the construction of random forest.
+#' @param mobforest_controls The mobforest_controls passed into
+#' mobforest.analysis
 #' @param fraction number of observations to draw without replacement (only
 #' relevant if replace = FALSE)
-#' @param replace TRUE or FALSE. replace = TRUE (default) performs
-#' bootstrapping. replace = FALSE performs sampling without replacement.
 #' @param model A model of class \code{"\link[=StatModel-class]{StatModel}"}
 #' used for fitting observations in current node. This parameter allows
 #' fitting a linear model or generalized linear model with formula y ~ x_1 +
@@ -51,33 +47,34 @@
 #' out <- bootstrap(i, data = BostonHousing, main_model = string.formula(formula),
 #'                  partition_vars = partition_vars <- c("rad", "crim", "tax"),
 #'                  mtry = 2, new_test_data = as.data.frame(matrix(0,0,0)),
-#'                  mobforest_controls = mobforest_controls@mob_control, fraction = 1,
-#'                  replace = TRUE, model = linearModel, family = "", prob_cutoff = .5)
+#'                  mobforest_controls = mobforest_controls, fraction = 1,
+#'                  model = linearModel, family = "", prob_cutoff = .5)
 #' out
 #' }
 #' @importFrom modeltools ModelEnvFormula
 #' @importFrom stats as.formula
 #' @export
 bootstrap <- function(i, data, main_model, partition_vars, mtry, new_test_data,
-                      mobforest_controls, fraction, replace, model, family,
+                      mobforest_controls, fraction, model, family,
                       prob_cutoff = .5) {
   # Grab a Fraction of the Data
   data_sub_inds <-
-    sample(nrow(data), replace = replace)[1:round(fraction * nrow(data))]
+    sample(nrow(data),
+           replace = mobforest_controls@replace)[1:round(fraction * nrow(data))]
   data_sub <- data[data_sub_inds, ]
   # Call mob_RF_tree based on model@name
   fmBH <- NULL
   if (model@name == "linear regression model") {
     fmBH <-
       mob.rf.tree(main_model = main_model, partition_vars = partition_vars,
-                  mtry = mtry, control = mobforest_controls, data = data_sub,
-                  model = model)
+                  mtry = mtry, control = mobforest_controls@mob_control,
+                  data = data_sub, model = model)
   }
   if (model@name == "generalized linear regression model") {
     fmBH <-
       mob.rf.tree(main_model = main_model, partition_vars = partition_vars,
-                  mtry = mtry, control = mobforest_controls, data = data_sub,
-                  model = model, family = family)
+                  mtry = mtry, control = mobforest_controls@mob_control,
+                  data = data_sub, model = model, family = family)
   }
   # Find the out-of-box rows. This is used when calculate variable importance
   oob_inds <- setdiff(1:nrow(data), data_sub_inds)
@@ -128,7 +125,7 @@ bootstrap <- function(i, data, main_model, partition_vars, mtry, new_test_data,
     ret <- list(oob_inds, oob_rsq, pred, (oob_mse_perm - mse_oob),
                 mse_oob, gen_rsq, mse_gen, pred_new, newdat_rsq)
     names(ret) <- c("oob_inds", "oob_R2", "pred", "raw_var_imp",
-                    "mse_oob", "gen_R2", "mse_gen", "pred_new", "newdat_R2")
+                    "mse_oob", "gen_R2", "mse_gen", "pred_new", "new_data_R2")
   }
 
   # If model is a glm.
