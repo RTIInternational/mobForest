@@ -81,8 +81,8 @@ get.mf.object.lm <- function(object, main_model, partition_vars,
       prediction.output(
         pred_mean = apply(newdata_predictions, 1, mean, na.rm = T),
         pred_sd = apply(newdata_predictions, 1, sd, na.rm = T),
-        residual = new_data_res, R2 = new_data_R2,
-        overall_r2 = compute.r2(new_data_obs, newdata_predictions),
+        residual = new_data_res, R2_or_acc = new_data_R2,
+        overall_r2_or_acc = compute.r2(new_data_obs, newdata_predictions),
         pred_type = "Newdata")
   }
   var_imp_obj <- varimp.output(var_imp)

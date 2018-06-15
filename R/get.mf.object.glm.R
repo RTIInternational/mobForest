@@ -60,21 +60,24 @@ get.mf.object.glm <- function(object, main_model, partition_vars, data,
   oob_pred <-
     prediction.output(pred_mean = apply(oob_predictions, 1, mean, na.rm = T),
                       pred_sd = apply(oob_predictions, 1, sd, na.rm = T),
-                      residual = oob_res, R2 = oob_acc,
-                      overall_r2 = compute.acc(obs_outcome, oob_predictions,
-                                             prob_cutoff), pred_type = "OOB")
+                      residual = oob_res,
+                      R2_or_acc = oob_acc,
+                      overall_r2_or_acc =
+                        compute.acc(obs_outcome, oob_predictions,
+                                    prob_cutoff), pred_type = "OOB")
   gen_res <- rep(NA, nrow(obs_outcome))
   general_pred <-
     prediction.output(pred_mean = apply(gen_predictions, 1, mean, na.rm = T),
                       pred_sd = apply(gen_predictions, 1, sd, na.rm = T),
-                      residual = gen_res, R2 = general_acc,
-                      overall_r2 =
-                        compute.acc(obs_outcome, gen_predictions,
-                                    prob_cutoff), pred_type = "General")
+                      residual = gen_res,
+                      R2_or_acc = general_acc,
+                      overall_r2_or_acc =
+                        compute.acc(obs_outcome, gen_predictions, prob_cutoff),
+                      pred_type = "General")
   new_data_pred <- prediction.output()
   new_data <- new_test_data
   new_data_obs <- data.frame(matrix(0, 0, 0))
-
+  
   if (nrow(new_data) > 0) {
     pred_new_data <- lapply(1:ntree, function(x) c_out[[x]]$pred_new)
     new_data_predictions <- matrix(unlist(pred_new_data), ncol = ntree)
@@ -89,10 +92,11 @@ get.mf.object.glm <- function(object, main_model, partition_vars, data,
         pred_mean = apply(new_data_predictions, 1, mean, na.rm = T),
         pred_sd = apply(new_data_predictions, 1, sd, na.rm = T),
         residual = new_data_res,
-        R2 = new_data_acc,
-        overall_r2 = compute.acc(new_data_obs, new_data_predictions,
-                               prob_cutoff), pred_type = "Newdata")
-  }
+        R2_or_acc = new_data_acc,
+        overall_r2_or_acc = compute.acc(new_data_obs, new_data_predictions,
+                                        prob_cutoff), pred_type = "Newdata")
+  }    
+ 
   var_imp_obj <- varimp.output(var_imp)
   mfout <-
     mobforest.output(
