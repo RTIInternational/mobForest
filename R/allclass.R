@@ -59,10 +59,15 @@ setClass("varimp.output",
 #' @keywords classes
 #' @export
 setClass("prediction.output",
-         representation(pred_mat = "matrix", R2 = "numeric", mse = "numeric",
-                        overall_r2 = "numeric", pred_type = "character"),
-         prototype = list(pred_mat = matrix(0, 0, 0), R2 = numeric(),
-                          mse = numeric(), overall_r2 = numeric(),
+         representation(pred_mat = "matrix",
+                        R2_or_acc = "numeric",
+                        mse = "numeric",
+                        overall_r2_or_acc = "numeric",
+                        pred_type = "character"),
+         prototype = list(pred_mat = matrix(0, 0, 0),
+                          R2_or_acc = numeric(),
+                          mse = numeric(),
+                          overall_r2_or_acc = numeric(),
                           pred_type = character()))
 
 
