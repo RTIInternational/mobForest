@@ -6,7 +6,7 @@
 frame using the tree model supplied as an input argument.}
 \usage{
 bootstrap(i, data, main_model, partition_vars, mtry, new_test_data,
-  mobforest_controls, fraction, replace, model, family, prob_cutoff = 0.5)
+  mobforest_controls, fraction, model, family, prob_cutoff = 0.5)
 }
 \arguments{
 \item{i}{the tree}
@@ -22,16 +22,11 @@ bootstrap(i, data, main_model, partition_vars, mtry, new_test_data,
 \item{new_test_data}{A data frame representing test data for validating
 random forest model. This data is not used in in tree building process.}
 
-\item{mobforest_controls}{An object of class
-\code{"\linkS4class{mobforest.control}"} returned by
-\link[=mobforest.control]{mobforest.control()}, that contains parameters
-controlling the construction of random forest.}
+\item{mobforest_controls}{The mobforest_controls passed into
+mobforest.analysis}
 
 \item{fraction}{number of observations to draw without replacement (only
 relevant if replace = FALSE)}
-
-\item{replace}{TRUE or FALSE. replace = TRUE (default) performs
-bootstrapping. replace = FALSE performs sampling without replacement.}
 
 \item{model}{A model of class \code{"\link[=StatModel-class]{StatModel}"}
 used for fitting observations in current node. This parameter allows
@@ -76,8 +71,8 @@ mobforest_controls <-
 out <- bootstrap(i, data = BostonHousing, main_model = string.formula(formula),
                  partition_vars = partition_vars <- c("rad", "crim", "tax"),
                  mtry = 2, new_test_data = as.data.frame(matrix(0,0,0)),
-                 mobforest_controls = mobforest_controls@mob_control, fraction = 1,
-                 replace = TRUE, model = linearModel, family = "", prob_cutoff = .5)
+                 mobforest_controls = mobforest_controls, fraction = 1,
+                 model = linearModel, family = "", prob_cutoff = .5)
 out
 }
 }
