@@ -5,8 +5,8 @@
 \title{Predictions and predictive accuracy estimates}
 \usage{
 prediction.output(pred_mean = numeric(), pred_sd = numeric(),
-  residual = numeric(), R2 = numeric(), mse = numeric(),
-  overall_r2 = numeric(), pred_type = character())
+  residual = numeric(), R2_or_acc = numeric(), mse = numeric(),
+  overall_r2_or_acc = numeric(), pred_type = character())
 }
 \arguments{
 \item{pred_mean}{Mean predictions across trees.}
@@ -15,11 +15,11 @@ prediction.output(pred_mean = numeric(), pred_sd = numeric(),
 
 \item{residual}{Residuals (predicted outcome - observed outcome).}
 
-\item{R2}{Predictive accuracy across trees}
+\item{R2_or_acc}{R2 or accuracy (for binomial) across trees}
 
 \item{mse}{MSE across trees}
 
-\item{overall_r2}{Overall R2}
+\item{overall_r2_or_acc}{Overall R2 or accuracy (for binomial)}
 
 \item{pred_type}{Out-of-bag data or test data or learning data.}
 }
