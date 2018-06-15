@@ -74,7 +74,7 @@ get.mf.object.lm <- function(object, main_model, partition_vars,
         as.formula(paste(main_model,
                          paste(partition_vars, collapse = " + "), sep = " | ")),
         data = newdata) @get ("response")
-    new_data_R2 <- unlist(lapply(1:ntree, function(x) c_out[[x]]$new_data_r2))
+    new_data_R2 <- unlist(lapply(1:ntree, function(x) c_out[[x]]$new_data_R2))
     new_data_res <-
       new_data_obs[, 1] - apply(newdata_predictions, 1, mean, na.rm = T)
     new_data_pred <-
