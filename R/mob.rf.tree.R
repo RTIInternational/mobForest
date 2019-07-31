@@ -36,7 +36,7 @@ mob.rf.tree <- function(main_model, partition_vars, mtry, weights,
                                             collapse = " + "), sep = " | "))
   if (inherits(base_fm, "formula")) {
     mobpp <- function(formula, data, model) {
-      ff <- attr(modeltools:::ParseFormula(formula), "formula")
+      ff <- attr(modeltools::ParseFormula(formula), "formula")
       ff$input[[3]] <- ff$input[[2]]
       ff$input[[2]] <- ff$response[[2]]
       dpp(model, as.formula(ff$input),

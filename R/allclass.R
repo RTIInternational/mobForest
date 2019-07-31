@@ -114,7 +114,7 @@ setClass("mobforest.output",
                         new_data_predictions = "prediction.output",
                         varimp_object = "varimp.output",
                         model_used = "character",
-                        fam = "character",
+                        family = "character",
                         train_response = "data.frame",
                         new_response = "data.frame"
                         ))

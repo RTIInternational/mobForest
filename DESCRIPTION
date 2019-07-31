@@ -1,8 +1,8 @@
 Package: mobForest
 Type: Package
 Title: Model Based Random Forest Analysis
-Version: 1.3.0
-Date: 2018-01-03
+Version: 1.3.1
+Date: 2019-07-31
 Author: Nikhil Garge [aut], Barry Eggleston [aut], Georgiy Bobashev [aut], Benjamin Carper [cre], Kasey Jones [ctb, cre], Torsten Hothorn [ctb], Kurt Hornik [ctb], Carolin Strobl [ctb], Achim Zeileis [ctb]
 Maintainer: Kasey Jones <krjones@rti.org>
 Description: Functions to implements random forest method for model based
@@ -28,4 +28,4 @@ Suggests:
     testthat (>= 1.0.2),
     mlbench (>= 2.1),
     lattice
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1

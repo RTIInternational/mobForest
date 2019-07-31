@@ -4,8 +4,8 @@
 \alias{mobforest.output}
 \title{Model-based random forest object}
 \usage{
-mobforest.output(oob_predictions, general_predictions, new_data_predictions,
-  varimp_object, model_used, fam, train_response,
+mobforest.output(oob_predictions, general_predictions,
+  new_data_predictions, varimp_object, model_used, family, train_response,
   new_response = data.frame(matrix(0, 0, 0)))
 }
 \arguments{
@@ -19,7 +19,7 @@ mobforest.output(oob_predictions, general_predictions, new_data_predictions,
 
 \item{model_used}{The model used.}
 
-\item{fam}{A description of the error distribution and link function to be
+\item{family}{A description of the error distribution and link function to be
 used in the model.}
 
 \item{train_response}{Response outcome of training data.}

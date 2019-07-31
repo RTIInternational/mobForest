@@ -10,7 +10,7 @@
 #' @param new_test_data A data frame representing test data for validating
 #' random forest model. This data is not used in in tree building process.
 #' @param ntree Number of trees to be constructed in forest (default = 300)
-#' @param fam A description of error distribution and link function to be used
+#' @param family A description of error distribution and link function to be used
 #' in the model. This parameter needs to be specified if generalized linear
 #' model is considered. The parameter "binomial()" is to be specified
 #' when logistic regression is considered and "poisson()" when Poisson
@@ -24,7 +24,7 @@
 #' 
 #' @export
 get.mf.object.lm <- function(object, main_model, partition_vars,
-                                  data, new_test_data, ntree, fam) {
+                                  data, new_test_data, ntree, family) {
   c_out <- object
   var_imp <- matrix(0, nrow = length(partition_vars), ncol = ntree)
   rownames(var_imp) <- partition_vars
@@ -90,6 +90,6 @@ get.mf.object.lm <- function(object, main_model, partition_vars,
     mobforest.output(
       oob_pred, general_pred, new_data_pred, var_imp_obj,
       paste(main_model, paste(partition_vars, collapse = " + "), sep = " | "),
-      fam = "", train_response = obs_outcome, new_response = new_data_obs)
+      family = "", train_response = obs_outcome, new_response = new_data_obs)
   return(mfout)
 }

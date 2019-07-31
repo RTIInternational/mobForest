@@ -4,8 +4,8 @@
 \alias{get.mf.object.lm}
 \title{Fit a linear model to a mobForest model}
 \usage{
-get.mf.object.lm(object, main_model, partition_vars, data, new_test_data, ntree,
-  fam)
+get.mf.object.lm(object, main_model, partition_vars, data, new_test_data,
+  ntree, family)
 }
 \arguments{
 \item{object}{A bootstrap model object created by \link[=bootstrap]{bootstrap()}}
@@ -21,7 +21,7 @@ random forest model. This data is not used in in tree building process.}
 
 \item{ntree}{Number of trees to be constructed in forest (default = 300)}
 
-\item{fam}{A description of error distribution and link function to be used
+\item{family}{A description of error distribution and link function to be used
 in the model. This parameter needs to be specified if generalized linear
 model is considered. The parameter "binomial()" is to be specified
 when logistic regression is considered and "poisson()" when Poisson

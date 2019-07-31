@@ -140,7 +140,7 @@ mobforest.analysis <-
           get.mf.object.glm(c_out, main_model = mod,
                         partition_vars = partition_vars, data = data,
                         new_test_data = new_test_data, ntree = B,
-                        fam = family$family, prob_cutoff = prob_cutoff)
+                        family = family, prob_cutoff = prob_cutoff)
       }
     }
     if (model@name == "linear regression model") {
@@ -148,7 +148,7 @@ mobforest.analysis <-
         get.mf.object.lm(c_out, main_model = mod,
                               partition_vars = partition_vars, data = data,
                               new_test_data = new_test_data, ntree = B,
-                              fam = "")
+                              family = family)
     }
     return(mf_object)
   }

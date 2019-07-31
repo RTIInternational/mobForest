@@ -28,10 +28,10 @@
 print.estimates <- function(x, ...){
   cat("MobForest Predictive Accuracy Report:\n\n")
   cat("Tree Level Summary \n\n")
-  if (x$fam != "binomial") {
+  if (x$family != "binomial") {
     cat("Pseudo R2 Report \n")
   }
-  if (x$fam == "binomial"){
+  if (x$family == "binomial"){
     cat("Proportion of subjects correctly classified\n")
   }
 
@@ -49,7 +49,7 @@ print.estimates <- function(x, ...){
       round(mean(x$General.R2), 3),
       round(gen_r2_qs[4:5], 3), sep = "\t", "\n\n")
 
-  if (x@fam != "binomial") {
+  if (x@family != "binomial") {
     cat("MSE Report \n")
     cat("Data Used\tMin.\tQ1\tMedian\tMean\tQ3\tMax.\n")
     oob_mse_qs <- as.numeric(
@@ -66,7 +66,7 @@ print.estimates <- function(x, ...){
   }
 
   cat("Forest Level Summary \n\n")
-  if (x$fam == "binomial") {
+  if (x$family == "binomial") {
     cat("OOB (Training) Data: \n\n")
     logistic.acc(x$train_response, x$oob_pred_mean, x$prob_cutoff)
     cat("\n\n All (Training) Data: \n\n")
@@ -88,7 +88,7 @@ print.estimates <- function(x, ...){
                 digits = 7, drop0trailing = F), sep = "\t", "\n\n")
 
     if (!is.null(x$new_data_overall_r2)) {
-      if (x$fam != "binomial") {
+      if (x$family != "binomial") {
         cat(
           "Validation",
           formatC(c(x$new_data_overall_r2, x$new_data_overall_mse),

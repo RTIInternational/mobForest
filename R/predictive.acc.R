@@ -74,12 +74,12 @@ predictive.acc <-
                    sum( (rf@general_predictions)@pred_mat[, 3] ** 2,
                        na.rm = T) / ss,
                    rf@model_used,
-                   rf@fam,
+                   rf@family,
                    prob_cutoff)
       names(rval) <-
         c("oob_r2", "oob_mse", "oob_overall_r2", "oob_overall_mse",
           "general_r2", "general_mse", "general_overall_r2",
-          "general_overall_mse", "model_used", "fam", "prob_cutoff")
+          "general_overall_mse", "model_used", "family", "prob_cutoff")
       vec_r2 <-
         c(rval$oob_overall_r2, min(rval$oob_r2), max(rval$oob_r2))
       vec_mse <-
@@ -99,7 +99,7 @@ predictive.acc <-
                       sum( (rf@general_predictions)@pred_mat[, 3] ** 2,
                            na.rm = T) / ss1,
                       rf@model_used,
-                      rf@fam,
+                      rf@family,
                       (rf@new_data_predictions)@R2,
                       (rf@new_data_predictions)@overall_r2,
                       sum( (rf@new_data_predictions)@pred_mat[, 3] ** 2,
@@ -108,7 +108,7 @@ predictive.acc <-
         names(rval) <-
           c("oob_r2", "oob_mse", "oob_overall_r2", "oob_overall_mse",
             "general_r2", "general_mse", "general_overall_r2",
-            "general_overall_mse", "model_used", "fam", "Newdata.R2",
+            "general_overall_mse", "model_used", "family", "Newdata.R2",
             "new_data_overall_r2", "new_data_overall_mse", "prob_cutoff")
         vec_r2 <- c(rval$oob_overall_r2, min(rval$oob_r2), max(rval$oob_r2),
                     rval$new_data_overall_r2)
@@ -117,7 +117,7 @@ predictive.acc <-
         }
     # if rf@ram is binomial, add additional output
     newd <- which(regexpr("Newdata", names(rval)) > 0)
-    if (rf@fam == "binomial") {
+    if (rf@family == "binomial") {
       rval$train_response <- rf@train_response
       rval$new_response <- rf@new_response
       rval$oob_pred_mean <- rf@oob_predictions@pred_mat[, 1]
@@ -130,7 +130,7 @@ predictive.acc <-
     if (plot == TRUE) {
       xlab <- ""
       r <- 2
-      if (rf@fam == "binomial") {
+      if (rf@family == "binomial") {
         r <- r - 1
         xlab <- "Proportion of subjects correctly classified"
         } else {
@@ -153,7 +153,7 @@ predictive.acc <-
            ylab = "", xlim = c(xlim1, xlim2))
       axis(1)
       box()
-      if (rf@fam != "binomial"){
+      if (rf@family != "binomial"){
         hist(rval$oob_mse, xlab = "MSE", main = "OOB performance (Tree Level)",
              xlim = c(min(vec_mse), max(vec_mse)))
         box()
@@ -172,7 +172,7 @@ predictive.acc <-
                main = "Validation Performance")
           axis(1)
           box()
-          if (rf@fam != "binomial") {
+          if (rf@family != "binomial") {
             plot(c(rval$new_data_overall_mse, rval$new_data_overall_mse),
                  c(1, 2), axes = F, type = "l", col = "red", lwd = 2,
                  xlab = "MSE", ylab = "", main = "Validation Performance",

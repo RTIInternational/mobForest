@@ -6,7 +6,8 @@
 considered during each split.}
 \usage{
 mob.rf.tree(main_model, partition_vars, mtry, weights, data = list(),
-  na.action = na.omit, model = glinearModel, control = mob_control(), ...)
+  na.action = na.omit, model = glinearModel, control = mob_control(),
+  ...)
 }
 \arguments{
 \item{main_model}{A model in character format}

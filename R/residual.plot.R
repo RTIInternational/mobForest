@@ -36,7 +36,7 @@
 #' @export
 residual.plot <- function(object, breaks = 50){
   rf <- object
-  if (rf@fam == "binomial" | rf@fam == "poisson") {
+  if (rf@family == "binomial" | rf@family == "poisson") {
     cat("Residual Plot not produced when logistic of Poisson regression",
         "is considered as the node model\n")
   } else {

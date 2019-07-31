@@ -9,7 +9,7 @@
 #' @param new_data_predictions Predictions on new test data.
 #' @param varimp_object The variable importance object.
 #' @param model_used The model used.
-#' @param fam A description of the error distribution and link function to be
+#' @param family A description of the error distribution and link function to be
 #' used in the model.
 #' @param train_response Response outcome of training data.
 #' @param new_response Response outcome of test data.
@@ -19,13 +19,13 @@
 #' @export
 mobforest.output <-
   function(oob_predictions, general_predictions, new_data_predictions,
-           varimp_object, model_used, fam, train_response,
+           varimp_object, model_used, family, train_response,
            new_response = data.frame(matrix(0, 0, 0))) {
     rval <- new("mobforest.output", oob_predictions = oob_predictions,
                 general_predictions = general_predictions,
                 new_data_predictions = new_data_predictions,
                 varimp_object = varimp_object, model_used = model_used,
-                fam = fam, train_response = train_response,
+                family = family, train_response = train_response,
                 new_response = new_response)
     return(rval)
   }
