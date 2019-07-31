@@ -6,3 +6,7 @@ Our latest version of mobForest was focused on revamping existing code to work w
 * All mobForest specific parameters now use the `underscore_sep` naming convention
 * Unit tests were written for many of the basic functions. Although several tests are not ran using `testthat`. These tests were causing `R CMD Check` to run indefinitely. Forums suggested that this happens when using the parallel package. All tests passed on the latest build when ran locally. 
 * CRAN suggests not using `:::` when calling hidden functions of another package. To overcome this, we copied the necessary hidden packages from `party` into `utility.R`. 
+
+# Updating to R 3.5.2
+
+No changes.
